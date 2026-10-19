@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-nginx
+spec:
+  volumes:
+  - name: app-data
+    emptyDir: {}
+  containers:
+  - name: nginx
+    image: nginx:1.19.1
+    volumeMounts:
+    - name: app-data
+      mountPath: /usr/share/nginx/html
+  initContainers:
+  - name: download
+    image: alpine
+    command: ['sh', '-c', 'apk update; apk add git; git clone -b develop https://github.com/mariano-italiano/lxk-Oct.git /app; echo "Git repo cloned and index.html downlaoded"']
+    volumeMounts:
+    - name: app-data
+      mountPath: /app

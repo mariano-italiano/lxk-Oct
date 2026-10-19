@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: ubuntu-pod
+  name: ubuntu-pod
+spec:
+  containers:
+  - image: ubuntu
+    name: ubuntu-pod

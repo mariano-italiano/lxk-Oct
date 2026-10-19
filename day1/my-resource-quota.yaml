@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: my-resource-quota
+  namespace: lx-k
+spec:
+  hard:
+    pods: "4"
