@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Komputronik Shop - Sklep komputerowy</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;background:#f4f6f9;color:#222}
+header{background:#111827;color:white;padding:22px 8%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
+header h1{color:#38bdf8}
+nav a{color:white;text-decoration:none;margin-left:20px}
+.hero{text-align:center;padding:65px 20px;background:#1e293b;color:white}
+.hero h2{font-size:36px;margin-bottom:15px}
+.hero p{color:#cbd5e1;margin-bottom:25px}
+.btn{background:#0284c7;color:white;padding:12px 20px;border:0;border-radius:6px;cursor:pointer;text-decoration:none}
+.btn:hover{background:#0369a1}
+section{padding:40px 8%}
+section h2{text-align:center;margin-bottom:30px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.card{background:white;padding:22px;border-radius:12px;text-align:center;box-shadow:0 3px 12px #00000010}
+.card .emoji{font-size:65px;margin-bottom:15px}
+.card h3{margin-bottom:10px}
+.card p{color:#64748b;margin-bottom:15px;font-size:14px}
+.price{font-size:23px;font-weight:bold;color:#0284c7;margin-bottom:18px}
+.card button{width:100%}
+#cart{font-weight:bold;color:#38bdf8}
+.about{text-align:center;background:#e2e8f0}
+footer{text-align:center;background:#111827;color:white;padding:25px}
+</style>
+</head>
+<body>
+<header>
+<h1>TechZone</h1>
+<nav>
+<a href="#home">Strona główna</a>
+<a href="#produkty">Produkty</a>
+<a href="#kontakt">Kontakt</a>
+<span id="cart">🛒 0</span>
+</nav>
+</header>
+
+<div class="hero" id="home">
+<h2>Twój nowy komputer czeka!</h2>
+<p>Komputery gamingowe, laptopy i sprzęt dla profesjonalistów.</p>
+<a href="#produkty" class="btn">Zobacz ofertę</a>
+</div>
+
+<section id="produkty">
+<h2>Nasze produkty</h2>
+<div class="products">
+<div class="card">
+<div class="emoji">🖥️</div>
+<h3>PC Gaming Pro</h3>
+<p>RTX 5070, Ryzen 7, 32 GB RAM, SSD 1 TB</p>
+<div class="price">6 499 zł</div>
+<button class="btn" onclick="add('PC Gaming Pro',6499)">Dodaj do koszyka</button>
+</div>
+<div class="card">
+<div class="emoji">💻</div>
+<h3>Laptop Ultra</h3>
+<p>Intel Core i7, 16 GB RAM, SSD 1 TB</p>
+<div class="price">3 999 zł</div>
+<button class="btn" onclick="add('Laptop Ultra',3999)">Dodaj do koszyka</button>
+</div>
+<div class="card">
+<div class="emoji">🎮</div>
+<h3>PC Gamer Start</h3>
+<p>Ryzen 5, RTX 4060, 16 GB RAM, SSD 1 TB</p>
+<div class="price">3 499 zł</div>
+<button class="btn" onclick="add('PC Gamer Start',3499)">Dodaj do koszyka</button>
+</div>
+<div class="card">
+<div class="emoji">⌨️</div>
+<h3>Zestaw akcesoriów</h3>
+<p>Klawiatura mechaniczna i mysz gamingowa</p>
+<div class="price">299 zł</div>
+<button class="btn" onclick="add('Zestaw akcesoriów',299)">Dodaj do koszyka</button>
+</div>
+</div>
+</section>
+
+<section class="about">
+<h2>Dlaczego TechZone?</h2>
+<p>✅ Szybka wysyłka &nbsp; ✅ Gwarancja jakości &nbsp; ✅ Bezpieczne zakupy</p>
+</section>
+
+<section id="kontakt">
+<h2>Kontakt</h2>
+<p style="text-align:center">Email: kontakt@techzone.pl<br><br>Telefon: 123 456 789</p>
+</section>
+
+<footer>
+<p>© 2026 TechZone — Sklep komputerowy</p>
+</footer>
+
+<script>
+let count = 0;
+let total = 0;
+function add(name, price) {
+  count++;
+  total += price;
+  document.getElementById('cart').textContent =
+    '🛒 ' + count + ' | ' + total.toLocaleString('pl-PL') + ' zł';
+  alert(name + ' dodano do koszyka!');
+}
+</script>
+</body>
+</html>
