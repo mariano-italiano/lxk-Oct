@@ -15,3 +15,5 @@
 1. Przygotowujemy OS pod k8s (sysctl, modprobe, swap, repos, container runtime)
 2. Instalacja kubectl, kubelet, kubeadm
 3. JOIN do klastra
+
+Punkty 1-2 robi skrypt: `deploy-k8s-ubuntu.sh`.
