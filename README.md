@@ -21,7 +21,7 @@ chmod +x deploy-k8s-ubuntu.sh
 
 kubeadm init
 
-kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+kubectl apply -f https://reweave.azurewebsites.net/k8s/v1.36/net.yaml
 
 logout
 
