@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nodeselector-pod
+spec:
+  nodeSelector:
+    zone: dmz
+  containers:
+  - image: ubuntu
+    name: ubuntu-pod
+    command: ['sh', '-c', 'tail -F /tmp/test']

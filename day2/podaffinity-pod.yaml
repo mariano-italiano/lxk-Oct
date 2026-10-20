@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: podaffinity-pod
+spec:
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: run                         # labelka poda względem ktorego robimy przypisanie do node'a 
+            operator: In
+            values:
+            - my-test-pod
+        topologyKey: kubernetes.io/country   # labelka pod node'y 
+  containers:
+  - name: with-pod-affinity
+    image: registry.k8s.io/pause:3.8
+

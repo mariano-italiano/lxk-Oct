@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: toleration-pod
+spec:
+  containers:
+  - image: ubuntu
+    name: ubuntu-pod
+    command: ['sh', '-c', 'tail -F /tmp/test']
+  tolerations:
+  - key: "no-storage"
+    operator: "Exists"
+    effect: "NoSchedule"
