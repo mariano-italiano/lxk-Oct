@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ds1
+  labels:
+    app: httpd1
+spec:
+  selector:
+    matchLabels:
+      app: httpd1
+  template:
+    metadata:
+      labels:
+        app: httpd1
+    spec:
+      containers:
+      - name: ds1-pod-container
+        image: httpd
+        imagePullPolicy: IfNotPresent

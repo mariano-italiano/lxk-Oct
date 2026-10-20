@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: testjob
+  labels:
+    jobgroup: joby
+spec:
+  parallelism: 1 # ile replik joba wystartuje
+  completions: 1 # ile podow ma sie zakonczyc powodzeniem
+  activeDeadlineSeconds: 20 # ile sekund max moze trwac job
+  backoffLimit: 4 # ile razy moze sie wysypac
+  template:
+    spec:
+      containers:
+      - name: testjob-pod
+        image: busybox
+        imagePullPolicy: IfNotPresent
+        command: ["sh", "-c", "sleep 30"]
+      restartPolicy: Never

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    lab: pod
+    task: 3a
+  name: pod-lab3
+spec:
+  containers:
+  - image: nginx
+    name: pod-lab3
+    imagePullPolicy: IfNotPresent
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always

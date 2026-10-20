@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc1
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 200Mi
+  storageClassName: "" # bez tego klaster z domyslna StorageClass utworzy nowy wolumen zamiast uzyc pv1

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: demo2
+  labels:
+    app: nginx-cpu4
+spec:
+  selector:
+    matchLabels:
+      app: nginx-cpu4
+  template:
+    metadata:
+      labels:
+        app: nginx-cpu4
+    spec:
+      nodeSelector:
+        cpu: "4"
+      containers:
+      - name: demo2-pod-container
+        image: nginx
+        imagePullPolicy: IfNotPresent

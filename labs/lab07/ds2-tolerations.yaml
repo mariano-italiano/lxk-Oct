@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ds2
+  labels:
+    app: httpd2
+spec:
+  selector:
+    matchLabels:
+      app: httpd2
+  template:
+    metadata:
+      labels:
+        app: httpd2
+    spec:
+      containers:
+      - name: ds2-pod-container
+        image: httpd
+        imagePullPolicy: IfNotPresent
+      tolerations:
+      - key: "key1"
+        operator: "Exists"
+        effect: "NoSchedule"

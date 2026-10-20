@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: cron1
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+          - name: cronjob-cont
+            image: busybox
+            imagePullPolicy: IfNotPresent
+            command: ['sh', '-c', 'echo CronJobs w akcji']

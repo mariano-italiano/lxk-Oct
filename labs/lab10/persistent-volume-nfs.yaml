@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv1
+spec:
+  nfs:
+    path: /exampleshare
+    server: 10.10.1.1 # adres IP serwera base
+    readOnly: false
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: "" # PV statyczny, bez StorageClass

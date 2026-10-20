@@ -1,0 +1,15 @@
+# Wariant zastepczy dla klastra bez serwera NFS (jeden node)
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pv1
+spec:
+  hostPath:
+    path: /data/pv1
+    type: DirectoryOrCreate
+  capacity:
+    storage: 1Gi
+  accessModes:
+  - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: ""

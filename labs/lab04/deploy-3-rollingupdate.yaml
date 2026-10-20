@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: www
+  name: www
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: www
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: www
+    spec:
+      containers:
+      - image: httpd:2.4
+        name: httpd
+        imagePullPolicy: IfNotPresent
+        resources: {}

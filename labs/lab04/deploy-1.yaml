@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: www
+  name: www
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: www
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: www
+    spec:
+      containers:
+      - image: httpd
+        name: httpd
+        imagePullPolicy: IfNotPresent
+        resources: {}

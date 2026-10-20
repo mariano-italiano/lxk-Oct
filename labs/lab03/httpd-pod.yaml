@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    lab: pod
+    task: 3b
+  name: httpd-from-file
+spec:
+  containers:
+  - image: httpd
+    name: httpd-from-file
+    imagePullPolicy: IfNotPresent
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always

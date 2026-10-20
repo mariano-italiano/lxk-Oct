@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: www4
+  name: www4
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: www4
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: www4
+    spec:
+      containers:
+      - image: httpd
+        name: httpd
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          name: http-port
+        resources: {}

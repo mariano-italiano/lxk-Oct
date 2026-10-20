@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: www2
+  name: www2
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: www2
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: www2
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+          name: http-port
+        resources: {}

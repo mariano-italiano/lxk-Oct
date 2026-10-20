@@ -1,0 +1,6 @@
+# Obrazy Bitnami zostaly przeniesione do repozytorium bitnamilegacy (od 2025)
+image:
+  repository: bitnamilegacy/apache
+global:
+  security:
+    allowInsecureImages: true

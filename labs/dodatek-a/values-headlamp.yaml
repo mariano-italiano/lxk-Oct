@@ -1,0 +1,4 @@
+service:
+  type: NodePort
+clusterRoleBinding:
+  create: false # uprawnienia nadajemy recznie w kolejnym kroku

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pv-deploy
+  labels:
+    app: pv-deploy-httpd
+spec:
+  selector:
+    matchLabels:
+      app: pv-deploy-httpd
+  template:
+    metadata:
+      labels:
+        app: pv-deploy-httpd
+    spec:
+      containers:
+      - name: pv-deploy-cont
+        image: httpd
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: nfs-vol
+          mountPath: /tmp
+        ports:
+        - containerPort: 80
+          protocol: TCP
+      volumes:
+      - name: nfs-vol
+        persistentVolumeClaim:
+          claimName: pvc1
