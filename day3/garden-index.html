@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GardenPro - Sklep Ogrodniczy</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f7f8f4;color:#26352a}
+header{background:#194d32;color:white;padding:20px 7%;display:flex;
+justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap}
+.logo{font-size:27px;font-weight:bold}
+nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+nav a{color:white;text-decoration:none}
+nav a:hover{color:#b9ed9b}
+.cart{background:#77b957;color:#153b23;padding:11px 15px;border-radius:8px;font-weight:bold}
+.hero{padding:75px 8%;color:white;background:linear-gradient(90deg,#143d29ed,#143d2955),
+url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1600&q=80') center/cover}
+.hero h1{font-size:clamp(34px,5vw,55px);max-width:650px;margin-bottom:18px}
+.hero p{font-size:18px;line-height:1.6;max-width:550px;margin-bottom:25px}
+button{cursor:pointer;border:0;border-radius:7px;padding:12px 16px;font-weight:bold}
+.green{background:#78bd59;color:#163a22}
+.green:hover{background:#93d273}
+section{padding:45px 7%}
+.section-title{display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:25px}
+h2{font-size:29px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}
+input,select{padding:12px;border:1px solid #d4ddd1;border-radius:7px;font-size:15px}
+input{flex:1;min-width:180px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:22px}
+.card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 16px #0000000c}
+.card img{width:100%;height:190px;object-fit:cover}
+.info{padding:18px}
+.tag{font-size:12px;color:#398047;font-weight:bold;margin-bottom:8px}
+.info h3{font-size:20px;margin-bottom:10px}
+.info p{color:#69736b;line-height:1.5;min-height:44px}
+.price-row{display:flex;justify-content:space-between;align-items:center;margin-top:18px;gap:8px}
+.price{font-size:21px;font-weight:bold;color:#27743b}
+.price-row button{background:#205b36;color:white}
+.price-row button:hover{background:#398047}
+.benefits{background:#eaf2e4;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px}
+.benefit{padding:15px}
+.benefit h3{margin:10px 0}
+.benefit p{color:#657165;line-height:1.5}
+footer{background:#173b29;color:#e1e9df;padding:35px 7%;text-align:center;line-height:1.8}
+#cartItems{margin-top:15px;line-height:2}
+#cartPanel{display:none;background:white;padding:22px;border-radius:10px;margin-top:20px}
+@media(max-width:600px){header{padding:18px 5%}section{padding:35px 5%}.hero{padding:55px 6%}nav{gap:12px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">🌿 GardenPro</div>
+  <nav>
+    <a href="#home">Strona główna</a>
+    <a href="#products">Produkty</a>
+    <a href="#about">O nas</a>
+    <button class="cart" onclick="toggleCart()">🛒 Koszyk (<span id="count">0</span>)</button>
+  </nav>
+</header>
+
+<main>
+<div class="hero" id="home">
+  <h1>Twój ogród. Twoja pasja.</h1>
+  <p>Odkryj narzędzia, akcesoria i produkty, dzięki którym
+  stworzysz piękny ogród i zadbasz o każdą roślinę.</p>
+  <button class="green" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Zobacz produkty →</button>
+</div>
+
+<section id="products">
+  <div class="section-title"><h2>Nasze produkty</h2><span>🌱 Wszystko do Twojego ogrodu</span></div>
+  <div class="tools">
+    <input id="search" placeholder="Szukaj produktu..." oninput="render()">
+    <select id="category" onchange="render()">
+      <option value="all">Wszystkie kategorie</option>
+      <option value="Narzędzia">Narzędzia</option>
+      <option value="Rośliny">Rośliny</option>
+      <option value="Podlewanie">Podlewanie</option>
+      <option value="Meble">Meble ogrodowe</option>
+    </select>
+  </div>
+  <div class="grid" id="productsGrid"></div>
+  <div id="cartPanel">
+    <h2>🛒 Twój koszyk</h2>
+    <div id="cartItems"></div>
+    <h3 id="total" style="margin:15px 0">Razem: 0 zł</h3>
+    <button class="green" onclick="checkout()">Przejdź do zamówienia</button>
+    <button onclick="clearCart()" style="background:#eee">Wyczyść koszyk</button>
+    <p style="margin-top:12px;color:#69736b">To demonstracyjny koszyk. Zamówienia nie są wysyłane do sklepu.</p>
+  </div>
+</section>
+
+<section class="benefits" id="about">
+  <div class="benefit"><div style="font-size:30px">🚚</div><h3>Szybka dostawa</h3><p>Wygodna dostawa produktów pod wskazany adres.</p></div>
+  <div class="benefit"><div style="font-size:30px">🌿</div><h3>Duży wybór</h3><p>Narzędzia i akcesoria dla początkujących oraz ekspertów.</p></div>
+  <div class="benefit"><div style="font-size:30px">💚</div><h3>Pomoc i porady</h3><p>Wybierz produkty dopasowane do swojego ogrodu.</p></div>
+</section>
+</main>
+
+<footer>
+  <h2>GardenPro 🌿</h2>
+  <p>Twój partner w pielęgnacji ogrodu</p>
+  <p>Kontakt: sklep@twojsklep.pl | Tel. 123 456 789</p>
+  <p>© 2026 GardenPro. Wszystkie prawa zastrzeżone.</p>
+</footer>
+
+<script>
+const products=[
+{id:1,name:"Sekator ogrodowy",cat:"Narzędzia",price:49.99,desc:"Precyzyjne cięcie gałęzi i krzewów.",img:"photo-剪"},
+{id:2,name:"Konewka ogrodowa",cat:"Podlewanie",price:29.99,desc:"Wygodne podlewanie roślin i kwiatów.",img:"photo-1599685315640-200e3e0b7b5d"},
+{id:3,name:"Zestaw narzędzi",cat:"Narzędzia",price:89.99,desc:"Praktyczny zestaw do codziennych prac.",img:"photo-1589923188900-85dae523342b"},
+{id:4,name:"Rośliny ozdobne",cat:"Rośliny",price:24.99,desc:"Dodaj koloru i życia swojemu ogrodowi.",img:"photo-1497250681960-ef046c08a56e"},
+{id:5,name:"Meble ogrodowe",cat:"Meble",price:599.99,desc:"Wygodny zestaw na taras i do ogrodu.",img:"photo-1600210492486-724fe5c67fb0"},
+{id:6,name:"Wąż ogrodowy",cat:"Podlewanie",price:79.99,desc:"Praktyczny wąż do podlewania trawnika.",img:"photo-1416879595882-3373a0480b5b"}
+];
+let cart=[];
+function money(n){return n.toLocaleString("pl-PL",{style:"currency",currency:"PLN"})}
+function render(){
+ const q=document.getElementById("search").value.toLowerCase();
+ const cat=document.getElementById("category").value;
+ const list=products.filter(p=>p.name.toLowerCase().includes(q)&&(cat==="all"||p.cat===cat));
+ document.getElementById("productsGrid").innerHTML=list.map(p=>`
+ <article class="card">
+ <img src="https://images.unsplash.com/${p.img}?auto=format&fit=crop&w=600&q=80" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=600&q=80'">
+ <div class="info"><div class="tag">${p.cat}</div><h3>${p.name}</h3><p>${p.desc}</p>
+ <div class="price-row"><span class="price">${money(p.price)}</span><button onclick="add(${p.id})">Dodaj +</button></div></div>
+ </article>`).join("")||"<p>Nie znaleziono produktów.</p>";
+}
+function add(id){cart.push(products.find(p=>p.id===id));updateCart()}
+function updateCart(){
+ document.getElementById("count").textContent=cart.length;
+ document.getElementById("cartItems").innerHTML=cart.length?cart.map((p,i)=>`${p.name} — ${money(p.price)} <button onclick="removeItem(${i})">Usuń</button>`).join("<br>"):"Koszyk jest pusty.";
+ document.getElementById("total").textContent="Razem: "+money(cart.reduce((s,p)=>s+p.price,0));
+}
+function removeItem(i){cart.splice(i,1);updateCart()}
+function clearCart(){cart=[];updateCart()}
+function toggleCart(){const p=document.getElementById("cartPanel");p.style.display=p.style.display==="block"?"none":"block";updateCart()}
+function checkout(){if(!cart.length){alert("Twój koszyk jest pusty.");return}alert("To wersja demonstracyjna. Aby przyjmować zamówienia, podłącz system płatności lub formularz zamówienia.")}
+render();updateCart();
+</script>
+</body>
+</html>
+

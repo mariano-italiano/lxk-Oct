@@ -1,0 +1,6 @@
+# configuration for app1
+version=1.0
+RUNTIME=/var/lib/containerd
+OPENBAO=false
+# branch name
+BRANCH_NAME=main

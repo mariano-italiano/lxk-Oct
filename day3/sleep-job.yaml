@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sleep-job
+spec:
+  # ustaw job żeby się usunał automatycznie po 100 sekundach od zakończenia Joba
+  ttlSecondsAfterFinished: 100
+  # uruchom się 3 razy
+  completions: 6
+  # nie dopuszczam faila dla poda z joba
+  backoffLimit: 0
+  # uruchom na raz ileś podów 
+  parallelism: 3
+  # ile max może trwać moj job
+  activeDeadlineSeconds: 45
+  template:
+    spec:
+      containers:
+      - name: sleep-job
+        image: busybox
+        command: ["/bin/sleep"]
+        args: ["15"]
+      restartPolicy: Never

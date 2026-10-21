@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoRent & GardenShop</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f5f6f4;color:#222}
+header{background:#17251f;color:white;padding:20px 7%;display:flex;
+justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
+.logo{font-size:23px;font-weight:bold}
+nav{display:flex;gap:10px;flex-wrap:wrap}
+button{cursor:pointer;border:0;border-radius:7px;padding:12px 18px;
+font-weight:bold;transition:.2s}
+nav button{background:#34473d;color:white}
+nav button:hover,nav button.active{background:#58a66b;color:white}
+.page{display:none}
+.page.active{display:block}
+.hero{padding:75px 8%;color:white;background:linear-gradient(90deg,#14251ee8,#14251e55),
+url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1600&q=80') center/cover}
+.hero.garden{background:linear-gradient(90deg,#10291ee8,#10291e55),
+url('https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1600&q=80') center/cover}
+.hero h1{font-size:clamp(32px,5vw,52px);max-width:700px;margin-bottom:18px}
+.hero p{font-size:18px;max-width:600px;line-height:1.6;margin-bottom:25px}
+.cta{background:#59ad6b;color:white}
+.cta:hover{background:#438e54;transform:translateY(-2px)}
+section.products{padding:45px 7%}
+h2{font-size:30px;margin-bottom:25px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px}
+.card{background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 15px #0000000c}
+.card img{width:100%;height:185px;object-fit:cover}
+.info{padding:20px}
+.info h3{font-size:20px;margin-bottom:10px}
+.info p{color:#666;line-height:1.5;margin-bottom:15px}
+.price{font-size:22px;font-weight:bold;color:#31834a;margin-bottom:16px}
+.card button{background:#203c2b;color:white;width:100%}
+.card button:hover{background:#438e54}
+footer{text-align:center;padding:25px;background:#17251f;color:#ddd}
+.note{padding:18px;background:#e7f3e8;border-radius:8px;margin-top:25px;line-height:1.6}
+@media(max-width:600px){header{padding:18px 5%}.hero{padding:55px 6%}
+section.products{padding:35px 5%}.logo{font-size:20px}nav button{padding:10px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">TwojaFirma</div>
+  <nav>
+    <button class="active" onclick="showPage('cars',this)">🚗 Wynajem aut</button>
+    <button onclick="showPage('garden',this)">🌿 Sklep ogrodowy</button>
+  </nav>
+</header>
+
+<main>
+<div class="page active" id="cars">
+  <div class="hero">
+    <h1>Wyrusz w drogę na własnych zasadach</h1>
+    <p>Wynajmij samochód dopasowany do Twoich potrzeb.
+    Komfortowe auta, przejrzyste ceny i szybka rezerwacja.</p>
+    <button class="cta" onclick="contact('wynajem samochodu')">Zapytaj o wynajem</button>
+  </div>
+  <section class="products">
+    <h2>Nasza flota</h2>
+    <div class="grid">
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=700&q=80" alt="Sportowy samochód">
+        <div class="info"><h3>Auto miejskie</h3><p>Idealne do miasta i codziennych podróży.</p>
+        <div class="price">129 zł / dzień</div>
+        <button onclick="contact('Auto miejskie')">Rezerwuj</button></div>
+      </article>
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=700&q=80" alt="SUV">
+        <div class="info"><h3>SUV rodzinny</h3><p>Przestrzeń, wygoda i komfort na trasie.</p>
+        <div class="price">219 zł / dzień</div>
+        <button onclick="contact('SUV rodzinny')">Rezerwuj</button></div>
+      </article>
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=700&q=80" alt="Samochód dostawczy">
+        <div class="info"><h3>Auto dostawcze</h3><p>Praktyczne rozwiązanie do przeprowadzek i pracy.</p>
+        <div class="price">189 zł / dzień</div>
+        <button onclick="contact('Auto dostawcze')">Rezerwuj</button></div>
+      </article>
+    </div>
+  </section>
+</div>
+
+<div class="page" id="garden">
+  <div class="hero garden">
+    <h1>Stwórz ogród swoich marzeń</h1>
+    <p>Odkryj narzędzia i sprzęt ogrodniczy, dzięki którym
+    pielęgnacja ogrodu stanie się łatwiejsza.</p>
+    <button class="cta" onclick="document.getElementById('gardenProducts').scrollIntoView({behavior:'smooth'})">Zobacz produkty</button>
+  </div>
+  <section class="products" id="gardenProducts">
+    <h2>Sprzęt ogrodowy</h2>
+    <div class="grid">
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1599685315640-200e3e0b7b5d?auto=format&fit=crop&w=700&q=80" alt="Kosiarka ogrodowa">
+        <div class="info"><h3>Kosiarka ogrodowa</h3><p>Zadbaj o idealny wygląd swojego trawnika.</p>
+        <div class="price">699 zł</div>
+        <button onclick="contact('Kosiarka ogrodowa')">Zapytaj o produkt</button></div>
+      </article>
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=700&q=80" alt="Narzędzia ogrodnicze">
+        <div class="info"><h3>Zestaw narzędzi</h3><p>Niezbędne akcesoria do pracy w ogrodzie.</p>
+        <div class="price">149 zł</div>
+        <button onclick="contact('Zestaw narzędzi')">Zapytaj o produkt</button></div>
+      </article>
+      <article class="card">
+        <img src="https://images.unsplash.com/photo-1592150621744-aca64f48394a?auto=format&fit=crop&w=700&q=80" alt="Rośliny ogrodowe">
+        <div class="info"><h3>Akcesoria do podlewania</h3><p>Wygodne rozwiązania do pielęgnacji roślin.</p>
+        <div class="price">89 zł</div>
+        <button onclick="contact('Akcesoria do podlewania')">Zapytaj o produkt</button></div>
+      </article>
+    </div>
+    <div class="note">🌱 Szukasz konkretnego sprzętu? Skontaktuj się z nami,
+    a pomożemy dobrać produkt do Twojego ogrodu.</div>
+  </section>
+</div>
+</main>
+
+<footer>
+  <p>© 2026 TwojaFirma | Wynajem samochodów i sprzęt ogrodowy</p>
+  <p style="margin-top:8px">Kontakt: <span id="email">kontakt@twojafirma.pl</span></p>
+</footer>
+
+<script>
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function contact(product){
+  const email=document.getElementById('email').textContent;
+  window.location.href='mailto:'+email+'?subject='+encodeURIComponent('Zapytanie: '+product);
+}
+</script>
+</body>
+</html>
+

@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-configmap
+data:
+  key1: value1
+  branch: "develop"
+  backup-enabled: "true"
+  version: 1.0.2
+  config.json: | 
+    { "attr1": "value1",
+    "attr2": "value2" } 
+  anotherKey: |
+    to jest jakis tam
+    multiline string
+    jako wartos dla klucza
+    anotherkey w my-cm 
+  README.md: |
+    ## Documentation 1
+    ### Subchapter 1
+    Test asdasdas d
+    adsadasdsa
+
+
